@@ -2,7 +2,44 @@
   <!-- 商品分类导航 -->
   <div class="type-nav">
     <div class="container">
-      <h2 class="all">全部商品分类</h2>
+      <!-- 事件委派||事件委托 -->
+      <div @mouseleave="leaveIndex">
+        <h2 class="all">全部商品分类</h2>
+        <!-- 三级联动 -->
+        <div class="sort">
+          <div class="all-sort-list2" @click="goSearch">
+            <div
+              class="item"
+              v-for="(c1, index) in categoryList"
+              :key="c1.categoryId"
+              :class="{ cur: currentIndex == index }"
+            >
+              <h3 @mouseenter="changeIndex(index)">
+                <a href="javascript:;"  :data-categoryName='c1.categoryName' :data-category1Id="c1.categoryId">{{ c1.categoryName }}</a>
+              </h3>
+              <!-- 二级、三级分类 -->
+              <div class="item-list clearfix" :style="{display:currentIndex == index ? 'block' : 'none'}">
+                <div
+                  class="subitem"
+                  v-for="(c2,index) in c1.categoryChild"
+                  :key="c2.categoryId"
+                >
+                  <dl class="fore">
+                    <dt>
+                      <a href="javascript:;"  :data-categoryName='c2.categoryName' :data-category2Id="c2.categoryId" >{{ c2.categoryName }}</a>
+                    </dt>
+                    <dd>
+                      <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
+                        <a href="javascript:;"  :data-categoryName='c3.categoryName' :data-category3Id="c3.categoryId" >{{ c3.categoryName }}</a>
+                      </em>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -13,48 +50,73 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2">
-          <div class="item" v-for="c1 in categoryList" :key="c1.categoryId">
-            <h3>
-              <a href="">{{c1.categoryName}}</a>
-            </h3>
-            <div class="item-list clearfix">
-              <div class="subitem" v-for="c2 in c1.categoryChild" :key="c2.categoryId">
-                <dl class="fore">
-                  <dt>
-                    <a href="">{{c2.categoryName}}</a>
-                  </dt>
-                  <dd>
-                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                      <a href="">{{c3.categoryName}}</a>
-                    </em>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
-export default { 
+import { mapState } from "vuex";
+// 按需引入lodash里的节流函数
+import throttle from 'lodash/throttle';
+export default {
   name: "TypeNav",
   // 组件挂载完毕就向服务器发送请求
-  mounted(){
-    // 通知vuex发送请求，获取数据，存储于仓库中
-    this.$store.dispatch('categoryList')
+  data() {
+    return {
+      // 存储用户鼠标移到哪一个一级分类
+      currentIndex: -1,
+    };
   },
-  computed:{
+  mounted() {
+    // 通知vuex发送请求，获取数据，存储于仓库中
+    this.$store.dispatch("categoryList");
+  },
+  computed: {
     ...mapState({
       // 使用函数写法时，右侧需要一个函数，当使用这个计算属性时，右侧函数会立即执行一次
-      categoryList:state => state.home.categoryList
-    })
-  }
+      categoryList: (state) => state.home.categoryList,
+    }),
+  },
+  methods: {
+    // 鼠标进入修改currentIndex数据
+    // changeIndex(index) {
+    //   // index是鼠标移动到一级分类的索引值
+    //   this.currentIndex = index;
+    // },
+    // 节流方式写入  throttle里的函数最好别用箭头函数，容易引起上下文this的错误
+    changeIndex:throttle(function(index){
+      this.currentIndex = index;
+    }),
+
+    // 一级分类鼠标移出事件
+    leaveIndex() {
+      this.currentIndex = -1;
+    },
+    goSearch(event){
+      // 使用编程式导航+事件委派
+      // 先获取事件的节点，节点有一个dataset属性，获取节点的自定义属性和其属性值
+      let element = event.target
+      let {categoryname,category1id,category2id,category3id} = element.dataset
+
+      // 1、解决只点a标签，给它加上:data-categoryName这个自定义属性
+      if(categoryname){
+        let location = {name:'search'}
+        let query = {categoryName:categoryname}
+        // 一级二级三级分类区分
+        if(category1id){
+          // 给query增添属性category1Id
+          query.category1Id = category1id
+        }else if(category2id){
+          query.category2Id = category2id
+        }else{
+          query.category3Id = category3id
+        }
+        location.query = query
+        // 路由跳转
+        this.$router.push(location)
+      }
+    }
+  },
 };
 </script>
 
@@ -167,12 +229,9 @@ export default {
               }
             }
           }
-
-          &:hover {
-            .item-list {
-              display: block;
-            }
-          }
+        }
+        .cur {
+          background: skyblue;
         }
       }
     }
