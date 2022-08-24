@@ -2297,15 +2297,15 @@
   dependencies:
     "delayed-stream" "~1.0.0"
 
+"commander@*", "commander@^7.2.0":
+  "integrity" "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw=="
+  "resolved" "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz"
+  "version" "7.2.0"
+
 "commander@^2.20.0":
   "integrity" "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   "version" "2.20.3"
-
-"commander@^7.2.0":
-  "integrity" "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw=="
-  "resolved" "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz"
-  "version" "7.2.0"
 
 "commander@^8.3.0":
   "integrity" "sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww=="
@@ -2717,6 +2717,13 @@
     "domelementtype" "^2.0.1"
     "domhandler" "^4.2.0"
     "entities" "^2.0.0"
+
+"dom7@^2.1.5":
+  "integrity" "sha512-xnhwVgyOh3eD++/XGtH+5qBwYTgCm0aW91GFgPJ3XG+jlsRLyJivnbP0QmUBFhI+Oaz9FV0s7cxgXHezwOEBYA=="
+  "resolved" "https://registry.npmmirror.com/dom7/-/dom7-2.1.5.tgz"
+  "version" "2.1.5"
+  dependencies:
+    "ssr-window" "^2.0.0"
 
 "domelementtype@^2.0.1", "domelementtype@^2.2.0":
   "integrity" "sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw=="
@@ -4234,6 +4241,13 @@
   dependencies:
     "minimist" "^1.2.6"
 
+"mockjs@^1.1.0":
+  "integrity" "sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ=="
+  "resolved" "https://registry.npmmirror.com/mockjs/-/mockjs-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "commander" "*"
+
 "module-alias@^2.2.2":
   "integrity" "sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q=="
   "resolved" "https://registry.npmjs.org/module-alias/-/module-alias-2.2.2.tgz"
@@ -5571,6 +5585,11 @@
   "resolved" "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   "version" "1.0.3"
 
+"ssr-window@^2.0.0":
+  "integrity" "sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A=="
+  "resolved" "https://registry.npmmirror.com/ssr-window/-/ssr-window-2.0.0.tgz"
+  "version" "2.0.0"
+
 "ssri@^8.0.1":
   "integrity" "sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ=="
   "resolved" "https://registry.npmjs.org/ssri/-/ssri-8.0.1.tgz"
@@ -5714,6 +5733,14 @@
     "csso" "^4.2.0"
     "picocolors" "^1.0.0"
     "stable" "^0.1.8"
+
+"swiper@^5.4.5":
+  "integrity" "sha512-7QjA0XpdOmiMoClfaZ2lYN6ICHcMm72LXiY+NF4fQLFidigameaofvpjEEiTQuw3xm5eksG5hzkaRsjQX57vtA=="
+  "resolved" "https://registry.npmmirror.com/swiper/-/swiper-5.4.5.tgz"
+  "version" "5.4.5"
+  dependencies:
+    "dom7" "^2.1.5"
+    "ssr-window" "^2.0.0"
 
 "table@^6.0.9":
   "integrity" "sha512-s/fitrbVeEyHKFa7mFdkuQMWlH1Wgw/yEXMt5xACT4ZpzWFluehAxRtUUQKPuWhaLAWhFcVx6w3oC8VKaUfPGA=="
