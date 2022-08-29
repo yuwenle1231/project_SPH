@@ -81,8 +81,6 @@
 
 <script>
 import { mapState } from "vuex";
-// 引入swiper，轮播图效果
-import Swiper from "swiper";
 import Carousel from "@/components/Carousel/index.vue";
 export default {
     name: "ListContainer",

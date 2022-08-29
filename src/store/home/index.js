@@ -40,7 +40,7 @@ const actions = {
     // 获取floor数据
     async getFloorList({commit}){
       let result = await reqFloorList()
-      console.log('1111',result);
+      console.log('FloorList',result);
       if(result.code == 200){
         commit('GETFLOORLIST',result.data)
       }

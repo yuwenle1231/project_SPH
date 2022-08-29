@@ -4,7 +4,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 // 引入小仓库
 import home from '@/store/home'
-import serach from '@/store/search'
+import search from '@/store/search'
 
 //存取数据state
 //mutations修改state的唯一手段
@@ -13,6 +13,6 @@ import serach from '@/store/search'
 export default new Vuex.Store({
     modules: {
         home,
-        serach
+        search
     }
 })

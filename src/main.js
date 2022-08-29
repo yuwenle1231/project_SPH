@@ -7,8 +7,10 @@ import store from '@/store'
 // 三级联动组件、轮播图  全局注册
 import TypeNav from '@/components/TypeNav'
 import Carousel from '@/components/Carousel'
+import Pagination from '@/components/Pagination'
 Vue.component(TypeNav.name,TypeNav)//参数1：全局组件的名字，参数2：哪一个组件
-Vue.component(Carousel.name,Carousel)//参数1：全局组件的名字，参数2：哪一个组件
+Vue.component(Carousel.name,Carousel)
+Vue.component(Pagination.name,Pagination)
 
 Vue.config.productionTip = false
 // 引入mockServe.js ---这是mock模拟数据
@@ -23,5 +25,8 @@ new Vue({
   // 注册路由  这里写了router，组件身上才有了$route $router属性
   router,
   // 注册仓库  组件实例身上就多了$store属性
-  store
+  store,
+  beforeCreate(){
+    Vue.prototype.$bus = this  //配置全局事件总线
+  },
 }).$mount('#app')
