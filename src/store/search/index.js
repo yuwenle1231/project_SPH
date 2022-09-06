@@ -27,7 +27,7 @@ const getters = {
     goodsList(state){
         return state.searchList.goodsList || []  //加入网络不好|没网，那么这里返回的是undefined，所以要加一个空数组
     },
-    trademarkList(){
+    trademarkList(state){
         return state.searchList.trademarkList 
     },
     attrsList(state){

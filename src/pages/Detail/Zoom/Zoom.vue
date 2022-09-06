@@ -1,17 +1,53 @@
 <template>
   <div class="spec-preview">
-    <img src="../images/s1.png" />
-    <div class="event"></div>
-    <div class="big">
-      <img src="../images/s1.png" />
+    <img :src="imgObj.imgUrl" />
+    <div class="event"  @mousemove="handler"></div>
+    <div class="big" >
+      <img :src="imgObj.imgUrl" ref="big" />
     </div>
-    <div class="mask"></div>
+    <div class="mask" ref="mask"></div>
   </div>
 </template>
 
 <script>
   export default {
     name: "Zoom",
+    props:['skuImageList'],
+    data() {
+      return {
+        currentIndex:0
+      }
+    },
+    computed:{
+      imgObj(){
+        // 当网络慢 服务器还未返回数据时 先给个空对象 解决警告
+        return this.skuImageList[this.currentIndex] || {}
+      }
+    },
+    mounted() {
+      // 全局事件总线  获取来自兄弟组件传的数据
+      this.$bus.$on('getIndex',(index)=>{
+        this.currentIndex = index
+      })
+    },
+    methods: {
+      handler(event){
+        let mask = this.$refs.mask
+        let big = this.$refs.big
+        let top = event.offsetY - mask.offsetHeight/2
+        let left = event.offsetX - mask.offsetWidth/2
+        // 约束范围
+        if(left <= 0 )  left = 0
+        if(left >= mask.offsetWidth) left = mask.offsetWidth
+        if(top <= 0 ) top = 0
+        if(top >= mask.offsetHeight) top = mask.offsetHeight
+        mask.style.top = top + 'px'
+        mask.style.left = left + 'px'
+        big.style.left = -2 * left + 'px'
+        big.style.top = -2 * top + 'px'
+
+      }
+    },
   }
 </script>
 

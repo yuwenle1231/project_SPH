@@ -5,6 +5,8 @@ Vue.use(Vuex)
 // 引入小仓库
 import home from '@/store/home'
 import search from '@/store/search'
+import detail from '@/store/detail'
+import shopcart from '@/store/shopCart'
 
 //存取数据state
 //mutations修改state的唯一手段
@@ -13,6 +15,8 @@ import search from '@/store/search'
 export default new Vuex.Store({
     modules: {
         home,
-        search
+        search,
+        detail,
+        shopcart
     }
 })

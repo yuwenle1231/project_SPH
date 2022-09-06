@@ -30,3 +30,20 @@ export const reqFloorList = () => mockRequests({ url: '/floor', method: 'get' })
  */
 // 这里的给服务器传递的params至少是一个空对象(即 调用该函数的时候参数 至少 得有一个空对象)  reqSearchInfo({})
 export const reqSearchInfo = (params) => requests({url:'/list',method:'post',data:params})
+
+
+// 获取商品详情   /api/item/{ skuId } get请求 
+export const reqGoodsInfo = (skuId) => requests({url:`/item/${skuId}`,method: 'get'})
+
+
+//将产品添加到购物车（获取更新某一个产品的个数） /api/cart/addToCart/{ skuId }/{ skuNum }  post请求
+export const reqAddOrUpdateShopCart = (skuId,skuNum) => requests({url:`/cart/addToCart/${skuId}/${skuNum}`,method:'post'})
+
+// 获取购物车的信息  /api/cart/cartList   get  不需要参数
+export const reqCartList = () => requests({url:'/cart/cartList',method:'get'})
+
+// 删除购物车某个产品  /api/cart/deleteCart/{skuId}  delete 带参数
+export const reqDeleteCartById = (skuId) => requests({url:`/cart/deleteCart/${skuId}`,method:'delete'})
+
+//  切换商品选中状态 /api/cart/checkCart/{skuID}/{isChecked} GET
+export const  reqUpdateCheckedById = (skuId,isChecked) => requests({url:`/cart/checkCart/${skuId}/${isChecked}`,method:'get'})
