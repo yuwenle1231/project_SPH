@@ -26,6 +26,8 @@ import { mapState } from 'vuex'
       // 获取floor数据
       mounted() {
             this.$store.dispatch('getFloorList')
+            // 获取用户信息
+            // this.$store.dispatch('getUserInfo')
         },
       computed:{
         ...mapState({

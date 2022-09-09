@@ -47,3 +47,20 @@ export const reqDeleteCartById = (skuId) => requests({url:`/cart/deleteCart/${sk
 
 //  切换商品选中状态 /api/cart/checkCart/{skuID}/{isChecked} GET
 export const  reqUpdateCheckedById = (skuId,isChecked) => requests({url:`/cart/checkCart/${skuId}/${isChecked}`,method:'get'})
+
+//获取验证码   /api/user/passport/sendCode/{phone}   get
+export const reqGetCode = (phone) => requests({url:`/user/passport/sendCode/${phone}`,method:'get'})
+
+// 注册接口  /api/user/passport/register   phone code password   post
+export const reqUserRegister = (data) => requests({url:'/user/passport/register',method:'post',data})
+
+//登录接口  /api/user/passport/login phone password POST
+export const  reqUserLogin = (data) => requests({url:'/user/passport/login',method:'post',data})
+
+// 获取用户地址信息  /api/user/userAddress/auth/findUserAddressList   get 
+
+// 获取用户信息  /api/user/passport/auth/getUserInfo get 
+export const reqUserInfo = () => requests({url:'/user/passport/auth/getUserInfo',method:'get'})
+
+// 退出登录 /api/user/passport/logout get
+export const reqLogout = () => requests({url:'/user/passport/logout',method:'get'})

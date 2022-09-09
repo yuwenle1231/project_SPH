@@ -7,6 +7,7 @@ import home from '@/store/home'
 import search from '@/store/search'
 import detail from '@/store/detail'
 import shopcart from '@/store/shopCart'
+import user from '@/store/user'
 
 //存取数据state
 //mutations修改state的唯一手段
@@ -17,6 +18,7 @@ export default new Vuex.Store({
         home,
         search,
         detail,
-        shopcart
+        shopcart,
+        user
     }
 })

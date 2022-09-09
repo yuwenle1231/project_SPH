@@ -22,9 +22,14 @@ requests.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     // 进度条开始
     nprogress.start();
+    // uuid_token是临时的token
     if(store.state.detail.uuid_token){
       // 请求头添加一个字段（userTempId），与后台商量好了的
       config.headers.userTempId = store.state.detail.uuid_token
+    }
+    // 真正的token需要发给服务器  请求头添加一个字段（token） 与后台商量好了的
+    if(store.state.user.token){
+      config.headers.token = store.state.user.token
     }
     return config;
     
