@@ -8,6 +8,7 @@ import search from '@/store/search'
 import detail from '@/store/detail'
 import shopcart from '@/store/shopCart'
 import user from '@/store/user'
+import trade from '@/store/trade'
 
 //存取数据state
 //mutations修改state的唯一手段
@@ -19,6 +20,7 @@ export default new Vuex.Store({
         search,
         detail,
         shopcart,
-        user
+        user,
+        trade
     }
 })

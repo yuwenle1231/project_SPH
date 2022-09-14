@@ -8,9 +8,15 @@ import store from '@/store'
 import TypeNav from '@/components/TypeNav'
 import Carousel from '@/components/Carousel'
 import Pagination from '@/components/Pagination'
+import { MessageBox } from 'element-ui';
 Vue.component(TypeNav.name,TypeNav)//参数1：全局组件的名字，参数2：哪一个组件
 Vue.component(Carousel.name,Carousel)
 Vue.component(Pagination.name,Pagination)
+Vue.component(MessageBox.name,MessageBox)
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+
 
 Vue.config.productionTip = false
 // 引入mockServe.js ---这是mock模拟数据
@@ -18,6 +24,10 @@ import '@/mock/mockServe'
 
 // 引入swiper的样式   有好几个地方都要用
 import 'swiper/css/swiper.css'
+
+
+// 统一接口api文件夹里面全部请求函数   统一引入  然后放在原型上 然后再Vue实例里就可以不用引入直接使用
+import * as API from '@/api'
 
 
 new Vue({
@@ -28,5 +38,6 @@ new Vue({
   store,
   beforeCreate(){
     Vue.prototype.$bus = this  //配置全局事件总线
+    Vue.prototype.$API = API
   },
 }).$mount('#app')

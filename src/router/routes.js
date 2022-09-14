@@ -1,3 +1,4 @@
+// 一级路由
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
@@ -5,7 +6,13 @@ import Search from '@/pages/Search'
 import Detail from '@/pages/Detail'
 import ShopCart from '@/pages/ShopCart'
 import AddCartSuccess from  '@/pages/AddCartSuccess'
-
+import Trade from  '@/pages/Trade'
+import Pay from  '@/pages/Pay'
+import PaySuccess from  '@/pages/PaySuccess'
+import Center from  '@/pages/Center'
+// 二级路由
+import MyOrder from '@/pages/Center/myOrder'
+import GroupOrder from '@/pages/Center/groupOrder'
 export default
 [
     {
@@ -50,5 +57,43 @@ export default
         // name:'ShopCart',
         component:ShopCart,
         meta:{show:true}  
+    },
+    {
+        path:'/trade',
+        // name:'trade',
+        component:Trade,
+        meta:{show:true}  
+    },
+    {
+        path:'/pay',
+        // name:'pay',
+        component:Pay,
+        meta:{show:true}  
+    },
+    {
+        path:'/paysuccess',
+        // name:'pay',
+        component:PaySuccess,
+        meta:{show:true}  
+    },
+    {
+        path:'/center',
+        // name:'pay',
+        component:Center,
+        meta:{show:true},
+        children:[
+            {
+            path:'myorder',
+            component:MyOrder
+            },
+            {
+                path:'grouporder',
+                component:GroupOrder
+            },
+            {
+                path:'/center',
+                redirect:'/center/myorder'
+            }
+        ]
     },
 ]
