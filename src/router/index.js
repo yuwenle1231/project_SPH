@@ -55,8 +55,18 @@ router.beforeEach(async (to,from,next) => {
       }
     }
   }else{
-    // 未登录
-    next()
+    // 未登录 不能进入交易，支付pay|paysuccess 个人中心....   用的全局守卫
+     // 未登录就点这些的话就自动跳转到登录
+    let toPath = to.path
+    if(toPath.indexOf('/trade')!=-1 ||toPath.indexOf('/pay')!=-1 || toPath.indexOf('/center')!=-1 ){
+      // 把未登录就想去的路由添加到query参数上
+
+      next('/login?redirect='+toPath)
+    }else{
+      next()
+    }
+   
+    // next()
   }
 })
 

@@ -49,7 +49,7 @@
                   <div class="p-img">
                     <!-- 记住带id  params参数 route里面有占位 -->
                     <router-link :to="`/detail/${good.id}`">
-                      <img :src="good.defaultImg" />
+                      <img v-lazy="good.defaultImg" />
                     </router-link>
                   </div>
                   <div class="price">

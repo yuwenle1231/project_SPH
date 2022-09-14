@@ -16,7 +16,10 @@ Vue.component(MessageBox.name,MessageBox)
 
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
-
+// 引入插件 懒加载
+import VueLazyload from 'vue-lazyload'
+// 引入图片
+import ylf from '@/assets/images/1.gif'
 
 Vue.config.productionTip = false
 // 引入mockServe.js ---这是mock模拟数据
@@ -29,7 +32,15 @@ import 'swiper/css/swiper.css'
 // 统一接口api文件夹里面全部请求函数   统一引入  然后放在原型上 然后再Vue实例里就可以不用引入直接使用
 import * as API from '@/api'
 
+// 注册插件
+Vue.use(VueLazyload,{
+  // 懒加载默认图片
+  loading:ylf
+}) 
 
+
+// 引入表单验证插件
+import '@/plugin/validate'
 new Vue({
   render: h => h(App),
   // 注册路由  这里写了router，组件身上才有了$route $router属性

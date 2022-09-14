@@ -1,5 +1,5 @@
 // 一级路由
-import Home from '@/pages/Home'
+// import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Search from '@/pages/Search'
@@ -22,7 +22,7 @@ export default
     },
     {
         path:'/home', //只是切换路由时网址里面的显示地址
-        component:Home,
+        component:() => import('@/pages/Home'), //路由懒加载的写法  类似与ElementUI的按需引入
         meta:{show:true}
     },
     {
@@ -62,13 +62,28 @@ export default
         path:'/trade',
         // name:'trade',
         component:Trade,
-        meta:{show:true}  
+        meta:{show:true},
+        // 路由独享守卫
+        beforeEnter: (to, from, next) => {
+            if(from.path=='/shopcart'){
+                next()
+            }else{
+                next(false)
+            }
+        }  
     },
     {
         path:'/pay',
         // name:'pay',
         component:Pay,
-        meta:{show:true}  
+        meta:{show:true},
+        beforeEnter: (to, from, next) => {
+            if(from.path == '/trade'){
+                next()
+            }else{
+                next(false)
+            }
+        }
     },
     {
         path:'/paysuccess',
